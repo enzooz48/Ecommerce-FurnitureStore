@@ -6,8 +6,8 @@ import './Banner.css';
 
 const Banner = () => {
 	return (
-		<section className="section-center">
-			<article className="content">
+		<div className="banner-container">
+			<article className="banner-content">
 				<h1>
 					Find Your <br /> Dream Home
 				</h1>
@@ -25,7 +25,7 @@ const Banner = () => {
 				<img src={heroBcg} alt="nice-table" className="main-img" />
 				<img src={heroBcg2} alt="man-working" className="accent-img" />
 			</article>
-		</section>
+		</div>
 	);
 };
 

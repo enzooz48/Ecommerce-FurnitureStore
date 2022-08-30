@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../assets/images/Logo.jpg';
+import Logo from '../../assets/images/Logo.jpg';
 import { GoThreeBars } from 'react-icons/go';
 import { MdOutlineClose } from 'react-icons/md';
-import { links } from '../data';
+import { links } from '../../data';
 import './Navbar.css';
-import CartButtons from './CartButtons';
+import CartButtons from '../cartButton/CartButtons';
 
 const Navbar = () => {
 	const [isNavShowing, setIsNavShowing] = useState(false);

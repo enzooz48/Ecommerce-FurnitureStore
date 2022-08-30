@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Footer from './components/footer/Footer';
+import Navbar from './components/navbar/Navbar';
 import About from './page/about/About';
 import Login from './page/auth/Login';
 import Register from './page/auth/Register';
@@ -25,6 +26,7 @@ function App() {
 				<Route path="/register" element={<Register />} />
 				<Route path="*" element={<Error />} />
 			</Routes>
+			<Footer />
 		</Router>
 	);
 }
