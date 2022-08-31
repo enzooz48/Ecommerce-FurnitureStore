@@ -11,7 +11,7 @@ const Navbar = () => {
 	const [isNavShowing, setIsNavShowing] = useState(false);
 
 	return (
-		<nav>
+		<nav className="nav-container">
 			<div className="nav-center">
 				<div className="nav-header">
 					<Link to="/" onClick={() => setIsNavShowing(false)}>

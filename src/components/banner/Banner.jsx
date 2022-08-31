@@ -6,16 +6,15 @@ import './Banner.css';
 
 const Banner = () => {
 	return (
-		<div className="banner-container">
+		<section className="section-center banner">
 			<article className="banner-content">
 				<h1>
 					Find Your <br /> Dream Home
 				</h1>
 				<p>
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, at
-					sed omnis corporis doloremque possimus velit! Repudiandae nisi odit,
-					aperiam odio ducimus, obcaecati libero et quia tempora excepturi quis
-					alias?
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+					porro natus dicta deserunt vitae commodi, nisi iste quo quos ea nam
+					officiis adipisci labore esse?
 				</p>
 				<Link to="/shop" className="btn hero-btn">
 					Shop Now
@@ -25,7 +24,7 @@ const Banner = () => {
 				<img src={heroBcg} alt="nice-table" className="main-img" />
 				<img src={heroBcg2} alt="man-working" className="accent-img" />
 			</article>
-		</div>
+		</section>
 	);
 };
 

@@ -67,6 +67,11 @@
 
 @media (min-width: 1280px) {
 	.contact-container {
-		padding: 15rem 0;
+		padding: 12rem 0;
+	}
+
+	.contact-context {
+		position: relative;
+		top: -5rem;
 	}
 }

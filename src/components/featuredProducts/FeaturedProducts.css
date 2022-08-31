@@ -1,23 +1,5 @@
-.featured__container {
+.section {
 	background: var(--clr-grey-10);
-	padding: 5rem 0;
-}
-
-.featured__title {
-	text-align: center;
-}
-
-.featured__title h2 {
-	margin-top: 20px;
-}
-
-.featured__title-underline {
-	width: 6rem;
-	height: 0.25rem;
-	background: #49a6e9;
-	background: var(--clr-primary-5);
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .featured {
@@ -30,7 +12,7 @@
 	height: 225px;
 }
 
-.btn {
+.section .btn {
 	display: block;
 	width: 148px;
 	margin: 0 auto;
@@ -42,4 +24,20 @@
 	.featured {
 		grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
 	}
+}
+
+@media screen and (min-width: 1280px) {
+	.featured {
+		position: relative;
+		top: -5rem;
+	}
+
+	.section .btn {
+		position: relative;
+		top: -5rem;
+	}
+	/* .featured__container {
+		position: relative;
+		top: -5rem;
+	} */
 }

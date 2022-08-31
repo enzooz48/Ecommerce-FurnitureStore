@@ -1,34 +1,18 @@
-import { useEffect, useState } from 'react';
-import ProductAPI from '../../api/ProductAPI';
 import Product from './components/Product';
 import { Link } from 'react-router-dom';
 import './FeaturedProducts.css';
+import { useProductsContext } from '../../context/ProductsContext';
 
 const FeaturedProducts = () => {
-	const [featured, setFeatured] = useState([]);
-
-	useEffect(() => {
-		let isMounted = true;
-		const fetchData = async () => {
-			const response = await ProductAPI.getAPI();
-			const data = response.data.slice(0, 3);
-			if (isMounted) setFeatured(data);
-		};
-		fetchData();
-
-		return () => {
-			isMounted = false;
-		};
-	}, []);
-
+	const { featured_products: featured } = useProductsContext();
 	return (
-		<div className="featured__container">
-			<div className="featured__title">
+		<div className="section">
+			<div className="title">
 				<h2>featured products</h2>
-				<div className="featured__title-underline"></div>
+				<div className="underline"></div>
 			</div>
 			<div className="section-center featured">
-				{featured.map((product) => {
+				{featured.slice(0, 3).map((product) => {
 					return <Product key={product.id} {...product} />;
 				})}
 			</div>

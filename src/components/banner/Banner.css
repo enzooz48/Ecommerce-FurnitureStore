@@ -1,17 +1,14 @@
-.banner-container {
+.banner {
 	min-height: 60vh;
 	display: grid;
 	place-items: center;
-	width: 90vw;
-	margin: 0 auto;
-	max-width: var(--max-width);
 }
 
 .img-container {
 	display: none;
 }
 
-.banner-container p {
+p {
 	line-height: 2;
 	max-width: 45em;
 	margin-bottom: 2rem;
@@ -19,19 +16,25 @@
 	font-size: 1rem;
 }
 
+@media screen and (min-width: 1280px) {
+	.banner {
+		position: relative;
+		top: -5rem;
+	}
+}
+
 @media screen and (min-width: 992px) {
-	.banner-container {
-		width: 95vw;
-		height: calc(100vh + 5rem);
+	.banner {
+		height: calc(100vh - 5rem);
 		grid-template-columns: 1fr 1fr;
 		gap: 8rem;
 	}
 
-	.banner-container h1 {
+	.banner h1 {
 		margin-bottom: 2rem;
 	}
 
-	.banner-container p {
+	.banner p {
 		font-size: 1.25rem;
 	}
 
