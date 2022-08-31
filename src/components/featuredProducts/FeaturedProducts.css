@@ -1,4 +1,4 @@
-.section {
+.featured-section {
 	background: var(--clr-grey-10);
 }
 
@@ -36,8 +36,4 @@
 		position: relative;
 		top: -5rem;
 	}
-	/* .featured__container {
-		position: relative;
-		top: -5rem;
-	} */
 }

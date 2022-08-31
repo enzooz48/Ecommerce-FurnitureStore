@@ -6,7 +6,7 @@ import { useProductsContext } from '../../context/ProductsContext';
 const FeaturedProducts = () => {
 	const { featured_products: featured } = useProductsContext();
 	return (
-		<div className="section">
+		<div className="section featured-section">
 			<div className="title">
 				<h2>featured products</h2>
 				<div className="underline"></div>
