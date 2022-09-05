@@ -2,37 +2,31 @@
 	background: var(--clr-grey-10);
 }
 
-.featured {
+.featured-section .featured {
 	margin: 4rem auto;
 	display: grid;
 	gap: 2.5rem;
 }
 
-.featured img {
+.featured-section .featured img {
 	height: 225px;
 }
 
 .featured-section .btn {
-	display: block;
+	display: block !important;
 	width: 148px;
 	margin: 0 auto;
 	text-align: center;
-	margin-top: 120px;
 }
 
 @media (min-width: 576px) {
-	.featured {
+	.featured-section .featured {
 		grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
 	}
 }
 
 @media screen and (min-width: 1280px) {
 	.featured {
-		position: relative;
-		top: -5rem;
-	}
-
-	.featured-section .btn {
 		position: relative;
 		top: -5rem;
 	}

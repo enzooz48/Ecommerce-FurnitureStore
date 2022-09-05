@@ -6,7 +6,7 @@ import './Product.css';
 const Product = ({ image, name, price, id }) => {
 	return (
 		<article>
-			<div className="container">
+			<div className="product-container">
 				<img src={image} alt={name} />
 				<Link to={`/detail/${id}`} className="link">
 					<FaSearch />
