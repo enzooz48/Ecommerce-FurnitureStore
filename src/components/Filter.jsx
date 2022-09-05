@@ -4,26 +4,25 @@ import { FaCheck } from 'react-icons/fa';
 
 const Filter = () => {
 	const {
-		filters: {
-			text,
-			category,
-			company,
-			color,
-			min_price,
-			price,
-			max_price,
-			shipping,
-		},
+		state: { allProducts, filters },
 		updateFilters,
 		clearFilters,
-		all_products,
 	} = useFilterContext();
+	const {
+		text,
+		category,
+		company,
+		colors,
+		minPrice,
+		maxPrice,
+		price,
+		freeShipping,
+	} = filters;
 
-	const categories = getUniqueValues(all_products, 'category');
-	const companies = getUniqueValues(all_products, 'company');
-	const colors = getUniqueValues(all_products, 'colors');
+	const categories = getUniqueValues(allProducts, 'category');
+	const companies = getUniqueValues(allProducts, 'company');
+	const colorValues = getUniqueValues(allProducts, 'colors');
 
-	console.log(all_products);
 	return (
 		<section className="filter-container">
 			<div className="filter__container-content">
@@ -36,7 +35,7 @@ const Filter = () => {
 						<input
 							type="text"
 							name="text"
-							placeholder="search"
+							placeholder="Search"
 							className="search-input"
 							value={text}
 							onChange={updateFilters}
@@ -46,36 +45,31 @@ const Filter = () => {
 					{/* Categories */}
 					<div className="form-control">
 						<h5>category</h5>
-						<div>
-							{categories.map((c, index) => {
-								return (
-									<button
-										key={index}
-										type="button"
-										name="category"
-										onClick={updateFilters}
-										className={`${
-											category === c.toLowerCase() ? 'active' : null
-										}`}>
-										{c}
-									</button>
-								);
-							})}
-						</div>
+						{categories.map((cat, i) => {
+							return (
+								<button
+									key={i}
+									name="category"
+									className={category === cat ? 'active' : null}
+									onClick={updateFilters}>
+									{cat}
+								</button>
+							);
+						})}
 					</div>
 					{/* End of Categories */}
 					{/* Companies */}
 					<div className="form-control">
 						<h5>company</h5>
 						<select
-							name="company"
 							className="company"
+							name="company"
 							value={company}
 							onChange={updateFilters}>
-							{companies.map((c, index) => {
+							{companies.map((com, i) => {
 								return (
-									<option value={c} key={index}>
-										{c}
+									<option value={com} key={i}>
+										{com}
 									</option>
 								);
 							})}
@@ -86,32 +80,25 @@ const Filter = () => {
 					<div className="form-control">
 						<h5>colors</h5>
 						<div className="colors">
-							{colors.map((c, index) => {
-								if (c === 'all') {
-									return (
-										<button
-											key={index}
-											name="color"
-											data-color={c}
-											onClick={updateFilters}
-											className={`${
-												color === 'all' ? 'all-btn active' : 'all-btn'
-											}`}>
-											all
-										</button>
-									);
-								}
-								return (
+							{colorValues.map((col, i) => {
+								return col === 'all' ? (
 									<button
-										key={index}
-										name="color"
-										style={{ background: c }}
-										data-color={c}
-										onClick={updateFilters}
-										className={`${
-											color === c ? 'color-btn active' : 'color-btn'
-										}`}>
-										{color === c ? <FaCheck /> : null}
+										className={`all-btn ${colors === 'all' && 'active'}`}
+										key={i}
+										name="colors"
+										data-col-values={col}
+										onClick={updateFilters}>
+										All
+									</button>
+								) : (
+									<button
+										className={`color-btn ${colors === col && 'active'}`}
+										key={i}
+										name="colors"
+										style={{ background: col }}
+										data-col-values={col}
+										onClick={updateFilters}>
+										{colors === col && <FaCheck />}
 									</button>
 								);
 							})}
@@ -126,10 +113,10 @@ const Filter = () => {
 						<input
 							type="range"
 							name="price"
-							min={min_price}
-							max={max_price}
-							onChange={updateFilters}
+							min={minPrice}
+							max={maxPrice}
 							value={price}
+							onChange={updateFilters}
 						/>
 					</div>
 					{/* End of Price */}
@@ -138,10 +125,10 @@ const Filter = () => {
 						<label htmlFor="shipping">free shipping</label>
 						<input
 							type="checkbox"
-							name="shipping"
+							name="freeShipping"
 							id="shipping"
+							checked={freeShipping}
 							onChange={updateFilters}
-							checked={shipping}
 						/>
 					</div>
 					{/* End of Shipping */}

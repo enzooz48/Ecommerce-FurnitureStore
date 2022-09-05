@@ -12,7 +12,7 @@
 	height: 225px;
 }
 
-.section .btn {
+.featured-section .btn {
 	display: block;
 	width: 148px;
 	margin: 0 auto;
@@ -32,7 +32,7 @@
 		top: -5rem;
 	}
 
-	.section .btn {
+	.featured-section .btn {
 		position: relative;
 		top: -5rem;
 	}

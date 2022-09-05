@@ -28,22 +28,22 @@ const ProductsReducer = (state, action) => {
 	if (action.type === GET_DETAIL_PRODUCT_BEGIN) {
 		return {
 			...state,
-			single_product_loading: true,
-			single_product_error: false,
+			detail_product_loading: true,
+			detail_product_error: false,
 		};
 	}
 	if (action.type === GET_DETAIL_PRODUCT_SUCCESS) {
 		return {
 			...state,
-			single_product: action.payload,
-			single_product_loading: false,
+			detail_product: action.payload,
+			detail_product_loading: false,
 		};
 	}
 	if (action.type === GET_DETAIL_PRODUCT_ERROR) {
 		return {
 			...state,
-			single_product_loading: false,
-			single_product_error: true,
+			detail_product_loading: false,
+			detail_product_error: true,
 		};
 	}
 

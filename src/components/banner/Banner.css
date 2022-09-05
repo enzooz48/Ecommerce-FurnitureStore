@@ -8,7 +8,7 @@
 	display: none;
 }
 
-p {
+.banner p {
 	line-height: 2;
 	max-width: 45em;
 	margin-bottom: 2rem;

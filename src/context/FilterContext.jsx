@@ -13,26 +13,28 @@ import {
 import { useProductsContext } from './ProductsContext';
 
 const initialState = {
-	filtered_products: [],
-	all_products: [],
-	grid_view: true,
+	allProducts: [],
+	filteredProducts: [],
+	gridView: true,
 	sort: 'price-lowest',
 	filters: {
 		text: '',
-		company: 'all',
 		category: 'all',
-		color: 'all',
-		min_price: 0,
-		max_price: 0,
+		company: 'all',
+		colors: 'all',
+		minPrice: 0,
+		maxPrice: 0,
 		price: 0,
-		shipping: false,
+		freeShipping: false,
 	},
 };
 
 const FilterContext = React.createContext();
 
 export const FilterProvider = ({ children }) => {
-	const { products } = useProductsContext();
+	const {
+		state: { products },
+	} = useProductsContext();
 	const [state, dispatch] = useReducer(FilterReducer, initialState);
 
 	useEffect(() => {
@@ -44,45 +46,47 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: SORT_PRODUCTS });
 	}, [products, state.sort, state.filters]);
 
-	const setGridView = () => {
-		dispatch({ type: SET_GRIDVIEW });
-	};
 	const setListView = () => {
 		dispatch({ type: SET_LISTVIEW });
 	};
 
+	const setGridView = () => {
+		dispatch({ type: SET_GRIDVIEW });
+	};
+
 	const updateSort = (e) => {
 		const value = e.target.value;
-
 		dispatch({ type: UPDATE_SORT, payload: value });
 	};
 
 	const updateFilters = (e) => {
-		let name = e.target.name;
-		let value = e.target.value;
-		if (name === 'category') {
+		let { name, value } = e.target;
+		if (e.target.name === 'category') {
 			value = e.target.textContent;
 		}
-		if (name === 'color') {
-			value = e.target.dataset.color;
+		if (e.target.name === 'colors') {
+			value = e.target.dataset.colValues;
 		}
-		if (name === 'price') {
-			value = Number(value);
+		if (e.target.name === 'price') {
+			value = Number(e.target.value);
 		}
-		if (name === 'shipping') {
-			value = e.target.checked;
+		if (e.target.name === 'freeShipping') {
+			value = Boolean(e.target.checked);
 		}
+
 		dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
 	};
+
 	const clearFilters = () => {
 		dispatch({ type: CLEAR_FILTERS });
 	};
+
 	return (
 		<FilterContext.Provider
 			value={{
-				...state,
-				setGridView,
+				state,
 				setListView,
+				setGridView,
 				updateSort,
 				updateFilters,
 				clearFilters,

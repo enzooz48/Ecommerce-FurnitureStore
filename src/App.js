@@ -7,7 +7,7 @@ import Register from './page/auth/Register';
 import Cart from './page/cart/Cart';
 import Checkout from './page/checkout/Checkout';
 import Detail from './page/detail/Detail';
-import Error from './page/error/Error';
+import Error from './page/Error';
 import Home from './page/home/Home';
 import Shop from './page/shop/Shop';
 

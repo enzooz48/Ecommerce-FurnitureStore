@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react';
+import axios from 'axios';
 import {
 	GET_PRODUCTS_BEGIN,
 	GET_PRODUCTS_SUCCESS,
@@ -7,7 +8,7 @@ import {
 	GET_DETAIL_PRODUCT_SUCCESS,
 	GET_DETAIL_PRODUCT_ERROR,
 } from '../Actions';
-import ProductAPI from '../api/ProductAPI';
+import { products_url as url } from '../data';
 import ProductsReducer from '../reducers/ProductsReducer';
 
 const initialState = {
@@ -25,20 +26,21 @@ const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(ProductsReducer, initialState);
 
-	const fetchProducts = async () => {
+	const fetchProducts = async (url) => {
 		dispatch({ type: GET_PRODUCTS_BEGIN });
 		try {
-			const response = await ProductAPI.getAPI();
+			const response = await axios.get(url);
 			const products = response.data;
 			dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
 		} catch (error) {
 			dispatch({ type: GET_PRODUCTS_ERROR });
 		}
 	};
-	const fetchDetailProduct = async () => {
+
+	const fetchDetailProduct = async (url) => {
 		dispatch({ type: GET_DETAIL_PRODUCT_BEGIN });
 		try {
-			const response = await ProductAPI.getAPI();
+			const response = await axios.get(url);
 			const products = response.data;
 			dispatch({ type: GET_DETAIL_PRODUCT_SUCCESS, payload: products });
 		} catch (error) {
@@ -47,10 +49,10 @@ export const ProductsProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		fetchProducts();
+		fetchProducts(url);
 	}, []);
 	return (
-		<ProductsContext.Provider value={{ ...state, fetchDetailProduct }}>
+		<ProductsContext.Provider value={{ state, fetchDetailProduct }}>
 			{children}
 		</ProductsContext.Provider>
 	);

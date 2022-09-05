@@ -1,0 +1,45 @@
+.imageProduct .mainImage {
+	height: 600px;
+}
+
+.imageProduct img {
+	width: 100%;
+	display: block;
+	border-radius: var(--radius);
+	object-fit: cover;
+}
+
+.imageProduct .gallery {
+	margin-top: 1rem;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	column-gap: 1rem;
+}
+
+.imageProduct .gallery img {
+	height: 100px;
+	cursor: pointer;
+}
+
+.imageProduct .active {
+	box-shadow: 0px 0px 0px 2px var(--clr-primary-5);
+}
+
+@media (max-width: 576px) {
+	.imageProduct .mainImage {
+		height: 300px;
+	}
+	.imageProduct .gallery img {
+		height: 50px;
+	}
+}
+
+@media (min-width: 992px) {
+	.imageProduct .mainImage {
+		height: 500px;
+	}
+
+	.imageProduct .gallery img {
+		height: 75px;
+	}
+}
