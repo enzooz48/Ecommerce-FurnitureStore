@@ -1,0 +1,7 @@
+.cart-container .empty {
+	text-align: center;
+}
+.cart-container .empty h2 {
+	margin-bottom: 1rem;
+	text-transform: none;
+}

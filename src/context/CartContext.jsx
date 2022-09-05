@@ -9,15 +9,19 @@ import {
 } from '../Actions';
 
 const getLocalStorage = () => {
-	let cart = localStorage.getItem('cart');
-	return cart ? JSON.parse(cart) : [];
+	const cart = localStorage.getItem('cart');
+	if (cart) {
+		return JSON.parse(localStorage.getItem('cart'));
+	} else {
+		return [];
+	}
 };
 
 const initialState = {
 	cart: getLocalStorage(),
-	total_items: 0,
-	total_amount: 0,
-	shipping_fee: 500,
+	totalItems: 0,
+	totalAmount: 0,
+	shippingFee: 999,
 };
 
 const CartContext = React.createContext();
@@ -30,28 +34,29 @@ export const CartProvider = ({ children }) => {
 		localStorage.setItem('cart', JSON.stringify(state.cart));
 	}, [state.cart]);
 
-	//add to cart
-	const addToCart = (id, color, amount, product) => {
-		dispatch({ type: ADD_TO_CART, payload: { id, color, amount, product } });
+	const addToCart = (id, color, amount, singleProduct) => {
+		dispatch({
+			type: ADD_TO_CART,
+			payload: { id, color, amount, singleProduct },
+		});
 	};
-	//remove item
+
 	const removeItem = (id) => {
 		dispatch({ type: REMOVE_CART_ITEM, payload: id });
 	};
 
-	//change amount
 	const toggleAmount = (id, value) => {
+		// console.log(id, value);
 		dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } });
 	};
 
-	//clear cart
 	const clearCart = () => {
 		dispatch({ type: CLEAR_CART });
 	};
 
 	return (
 		<CartContext.Provider
-			value={{ ...state, addToCart, removeItem, toggleAmount, clearCart }}>
+			value={{ state, addToCart, removeItem, toggleAmount, clearCart }}>
 			{children}
 		</CartContext.Provider>
 	);
