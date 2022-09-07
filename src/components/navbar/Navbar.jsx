@@ -1,30 +1,27 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/Logo.jpg';
-import { GoThreeBars } from 'react-icons/go';
-import { MdOutlineClose } from 'react-icons/md';
 import { links } from '../../data';
 import './Navbar.css';
 import CartButtons from '../cartButton/CartButtons';
+import { FaBars } from 'react-icons/fa';
+import { useProductsContext } from '../../context/ProductsContext';
 
 const Navbar = () => {
-	const [isNavShowing, setIsNavShowing] = useState(false);
 	const loginInfo = localStorage.getItem('USER_INFO');
+	const { openSidebar } = useProductsContext();
 
 	return (
 		<nav className="nav-container">
 			<div className="nav-center">
 				<div className="nav-header">
-					<Link to="/" onClick={() => setIsNavShowing(false)}>
+					<Link to="/">
 						<img src={Logo} alt="Logo" />
 					</Link>
-					<button
-						className={isNavShowing ? 'close-btn' : 'nav-toggle'}
-						onClick={() => setIsNavShowing((pre) => !pre)}>
-						{isNavShowing ? <MdOutlineClose /> : <GoThreeBars />}
+					<button className="nav-toggle" onClick={openSidebar}>
+						<FaBars />
 					</button>
 				</div>
-				<ul className={`nav-links ${isNavShowing ? 'show__nav' : 'hide__nav'}`}>
+				<ul className="nav-links">
 					{links.map(({ id, name, path }) => (
 						<li key={id}>
 							<Link to={path}>{name}</Link>

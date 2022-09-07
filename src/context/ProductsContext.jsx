@@ -14,6 +14,7 @@ import { products_url as url } from '../data';
 import ProductsReducer from '../reducers/ProductsReducer';
 
 const initialState = {
+	isSidebarOpen: false,
 	products_loading: false,
 	products_error: false,
 	products: [],
