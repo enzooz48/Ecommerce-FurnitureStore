@@ -12,7 +12,7 @@ const AddToCart = ({ product }) => {
 	const [mainColor, setMainColor] = useState(colors[0]);
 	const [amount, setAmount] = useState(1);
 
-	const increase = () => {
+	const handleIncrease = () => {
 		setAmount((olaAmount) => {
 			let tempAmount = olaAmount + 1;
 			if (tempAmount > stock) {
@@ -22,7 +22,7 @@ const AddToCart = ({ product }) => {
 		});
 	};
 
-	const decrease = () => {
+	const handleDecrease = () => {
 		setAmount((olaAmount) => {
 			let tempAmount = olaAmount - 1;
 			if (tempAmount < 1) {
@@ -52,11 +52,11 @@ const AddToCart = ({ product }) => {
 					})}
 				</div>
 			</div>
-			<div className="btn-contaioner">
+			<div className="btn-container">
 				<AmountButtons
 					amount={amount}
-					decrease={decrease}
-					increase={increase}
+					handleDecrease={handleDecrease}
+					handleIncrease={handleIncrease}
 				/>
 				<Link
 					to="/cart"

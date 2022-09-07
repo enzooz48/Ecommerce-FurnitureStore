@@ -44,3 +44,13 @@
 	line-height: 1.5;
 	padding: 0.5rem 1rem;
 }
+
+.empty {
+	text-align: center;
+}
+
+.checkout {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

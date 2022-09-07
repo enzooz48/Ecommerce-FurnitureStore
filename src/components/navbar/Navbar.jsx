@@ -9,6 +9,7 @@ import CartButtons from '../cartButton/CartButtons';
 
 const Navbar = () => {
 	const [isNavShowing, setIsNavShowing] = useState(false);
+	const loginInfo = localStorage.getItem('USER_INFO');
 
 	return (
 		<nav className="nav-container">
@@ -29,6 +30,11 @@ const Navbar = () => {
 							<Link to={path}>{name}</Link>
 						</li>
 					))}
+					{loginInfo && (
+						<li>
+							<Link to="/checkout">Checkout</Link>
+						</li>
+					)}
 				</ul>
 				<CartButtons />
 			</div>
